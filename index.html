@@ -7,12 +7,11 @@
         margin-left: auto;
         margin-right: auto;
       }
-      div#qr-reader{
+      div#qr-reader {
         display: block;
         margin-left: auto;
         margin-right: auto;
       }
-
     </style>
   </head>
   <body>
@@ -23,6 +22,7 @@
     <div id="qr-reader-results"></div>
   </body>
   <script src="/html5-qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@simondmc/popup-js@1.4.3/popup.min.js"></script>
   <script>
     function docReady(fn) {
       // see if DOM is already available
@@ -46,10 +46,18 @@
           ++countResults;
           lastResult = decodedText;
           // Handle on success condition with the decoded message.
-          resultContainer.innerText = decodedText;
-          console.log(`Scan result ${decodedText}`, decodedResult);
+          // resultContainer.innerText = decodedText;
+          // console.log(`Scan result ${decodedText}`, decodedResult);
           navigator.clipboard.writeText(decodedText);
-          alert("Copied the text: " + copyText.value);
+          //alert("Copied the text: " + copyText.value);
+          const myPopup = new Popup({
+            id: "my-popup",
+            title: "Text Copiado",
+            content: `
+            Texto copiado en el portapapeles:
+            ` +decodedText,
+          });
+          myPopup.show();
         }
       }
 
