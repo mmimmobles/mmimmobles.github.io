@@ -46,6 +46,7 @@
           ++countResults;
           lastResult = decodedText;
           // Handle on success condition with the decoded message.
+          resultContainer..innerText = decodedText;
           console.log(`Scan result ${decodedText}`, decodedResult);
           navigator.clipboard.writeText(decodedText);
           alert("Copied the text: " + copyText.value);
